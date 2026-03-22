@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Sort Shapes Puzzle</title>
+<link rel="icon" type="image/png" href="screenshots/screenshot1.png">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#fef5d9;
+  --surface:#fef5d9;
+  --surface-soft:#fef5d9;
+  --primary:#87ceeb;
+  --primary-deep:#87ceeb;
+  --text:#87ceeb;
+  --text-soft:#87ceeb;
+  --border:#87ceeb;
+  --shadow:0 10px 24px rgba(135,206,235,0.2);
+}
+body{
+  font-family:'Roboto',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  scroll-behavior:smooth;
+}
+a{text-decoration:none;color:var(--primary-deep);transition:all 0.25s ease;}
+.container{width:min(1100px,92%);margin:0 auto;}
+.nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(10px);
+  background:rgba(254,245,217,0.95);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 0;
+}
+.brand{
+  font-family:'Fredoka One',cursive;
+  color:var(--primary-deep);
+  font-size:24px;
+  letter-spacing:0.4px;
+}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{
+  font-weight:700;
+  color:var(--primary-deep);
+  opacity:0.9;
+}
+.nav-links a:hover{opacity:1;}
+.hero{
+  padding:88px 0 72px;
+  text-align:center;
+}
+.hero-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  padding:64px 28px;
+}
+.hero h1{
+  font-size:clamp(2rem,4vw,3rem);
+  line-height:1.1;
+  margin-bottom:16px;
+  color:var(--primary-deep);
+  font-family:'Fredoka One',cursive;
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s ease;
+}
+.hero p{
+  font-size:clamp(1rem,2vw,1.2rem);
+  color:var(--text-soft);
+  max-width:680px;
+  margin:0 auto;
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s ease;
+}
+.btn{
+  margin-top:28px;
+  padding:14px 34px;
+  display:inline-block;
+  background:var(--surface);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:14px;
+  font-family:'Fredoka One',cursive;
+  letter-spacing:0.5px;
+  box-shadow:0 10px 20px rgba(56,126,216,0.25);
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s ease,transform 0.25s ease,box-shadow 0.25s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 24px rgba(56,126,216,0.35);
+}
+.section{
+  padding:28px 0 76px;
+}
+.section h2{
+  text-align:center;
+  font-size:clamp(1.5rem,3vw,2rem);
+  margin-bottom:32px;
+  color:var(--primary-deep);
+  font-family:'Fredoka One',cursive;
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s ease;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.card{
+  background:var(--surface);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:26px 22px;
+  font-family:'Fredoka One',cursive;
+  letter-spacing:0.2px;
+  min-height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 10px 20px rgba(56,126,216,0.24);
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s ease,transform 0.25s ease;
+}
+.card:hover{transform:translateY(-6px);}
+.screens-wrap{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:20px;
+}
+.screens{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;
+}
+.screens img{
+  width:100%;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--surface-soft);
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s ease,transform 0.25s ease,box-shadow 0.25s ease;
+}
+.screens img:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 18px rgba(56,126,216,0.2);
+}
+.contact{
+  padding:20px 0 78px;
+}
+.contact-card{
+  text-align:center;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:44px 22px;
+}
+.contact h2{
+  margin-bottom:14px;
+  color:var(--primary-deep);
+  font-family:'Fredoka One',cursive;
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s ease;
+}
+.contact p.info{
+  color:var(--text-soft);
+  max-width:700px;
+  margin:0 auto 18px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s ease;
+}
+.contact a.email{
+  font-size:1.05rem;
+  font-weight:700;
+  color:var(--primary-deep);
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.7s ease;
+}
+.contact a.email:hover{text-decoration:underline;}
+.footer{
+  text-align:center;
+  padding:0 0 28px;
+  color:var(--text-soft);
+}
+.footer p + p{margin-top:8px;}
+.footer a{font-weight:700;}
+.animate{
+  opacity:1 !important;
+  transform:translateY(0) !important;
+}
+@media(max-width:700px){
+  .nav-inner{flex-direction:column;gap:10px;}
+  .hero{padding-top:64px;}
+  .hero-panel{padding:42px 18px;}
+  .section{padding-bottom:58px;}
+  .contact{padding-bottom:60px;}
+}
+</style>
+</head>
+<body>
+<div class="nav">
+  <div class="container nav-inner">
+    <div class="brand">Color Sort</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="hero">
+    <div class="hero-panel">
+      <h1>Color Sort Shapes Puzzle</h1>
+      <p>Relax your mind and challenge your brain with colorful shapes!</p>
+      <a href="https://play.google.com/store/apps/details?id=com.colorsortshapespuzzle.transitkadiri" class="btn" target="_blank" rel="noopener noreferrer">Download Now</a>
+    </div>
+  </div>
+  <div class="section" id="features">
+    <h2>Game Features</h2>
+    <div class="grid">
+      <div class="card">🎨 Multiple shapes (balls, stars, squares)</div>
+      <div class="card">🧠 Brain training levels</div>
+      <div class="card">😌 Relaxing gameplay</div>
+      <div class="card">📈 Progressive difficulty</div>
+    </div>
+  </div>
+  <div class="section" id="screens">
+    <h2>Screenshots</h2>
+    <div class="screens-wrap">
+      <div class="screens">
+        <img src="screenshots/screenshot1.png" alt="Screenshot 1">
+        <img src="screenshots/screenshot2.png" alt="Screenshot 2">
+        <img src="screenshots/screenshot3.png" alt="Screenshot 3">
+        <img src="screenshots/screenshot4.png" alt="Screenshot 4">
+        <img src="screenshots/screenshot5.png" alt="Screenshot 5">
+        <img src="screenshots/screenshot6.png" alt="Screenshot 6">
+        <img src="screenshots/screenshot7.png" alt="Screenshot 7">
+        <img src="screenshots/screenshot8.png" alt="Screenshot 8">
+        <img src="screenshots/screenshot9.png" alt="Screenshot 9">
+      </div>
+    </div>
+  </div>
+  <div class="contact" id="contact">
+    <div class="contact-card">
+      <h2>Contact Us</h2>
+      <p class="info">If you encounter any issues or have feedback, just click the email below – we are here to help!</p>
+      <a href="mailto:contact@transitkadiri.site" class="email">contact@transitkadiri.site</a>
+    </div>
+  </div>
+  <div class="footer">
+    <p><a href="privacy.html">Privacy Policy</a></p>
+    <p>© 2026 Color Sort App</p>
+  </div>
+</div>
+<script>
+function animateOnScroll() {
+  const elements = document.querySelectorAll('.hero h1, .hero p, .btn, .section h2, .card, .screens img, .contact h2, .contact p, .contact a');
+  const triggerBottom = window.innerHeight * 0.9;
+  elements.forEach((el) => {
+    if (el.getBoundingClientRect().top < triggerBottom) {
+      el.classList.add('animate');
+    }
+  });
+}
+window.addEventListener('scroll', animateOnScroll);
+window.addEventListener('load', animateOnScroll);
+</script>
+</body>
+</html>
